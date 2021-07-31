@@ -1,0 +1,56 @@
+/* stylelint-disable selector-max-universal */
+@import "../base.scss";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+    quotes: "“" "”" "‘" "’";
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Links
+ */
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+}
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+/*
+ * Media
+ */
+figure {
+    margin: 0;
+}
+img,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    vertical-align: middle;
+}
+img,
+object,
+iframe,
+video {
+    max-width: 100%;
+    height: auto;
+}

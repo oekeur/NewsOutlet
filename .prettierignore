@@ -1,0 +1,7 @@
+.vscode
+
+dist
+src/compiled-assets
+.vscode
+out
+.next

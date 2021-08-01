@@ -3,11 +3,20 @@ import type Article from "../../../interfaces/article";
 import styles from "./card.module.scss";
 
 export default function Card({ post, gridPos }) {
+    const headerImage = {
+        width: "100%",
+        height: "300px",
+        backgroundImage: `url(${post.urlToImage})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+    };
+
     return (
         <div className={`${styles.card} ${gridPos}`}>
             <Link href={`/article/${encodeURIComponent(post.id)}`}>
                 <div>
-                    <img src={post.urlToImage} alt={post.title} />
+                    <div style={headerImage} />
                     <div className={styles.content}>
                         <h2>
                             <a>{post.title}</a>

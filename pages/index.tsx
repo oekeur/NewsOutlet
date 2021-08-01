@@ -3,6 +3,15 @@ import Link from "next/link";
 import { useState } from "react";
 import pages from "../mock/pages";
 
+const getPublishers = (posts) => {
+    const sources = [];
+    posts.forEach((post) => sources.push(post.source.name));
+    const uniqueSources = [...new Set(sources)];
+    uniqueSources.sort((a, b) => a.localeCompare(b, "en"));
+    uniqueSources.unshift("All");
+    return uniqueSources;
+};
+
 export default function Home({ posts, homepageContent }) {
     const [order, setOrder] = useState("ASC");
     const [publisher, setPublisher] = useState("All");
@@ -13,11 +22,8 @@ export default function Home({ posts, homepageContent }) {
         const sort = a.title.localeCompare(b.title, "en");
         return order === "ASC" ? sort : sort * -1;
     });
-    const sources = [];
-    posts.forEach((post) => sources.push(post.source.name));
-    const uniqueSources = [...new Set(sources)];
-    uniqueSources.sort((a, b) => a.localeCompare(b, "en"));
-    uniqueSources.unshift("All");
+
+    const uniqueSources = getPublishers(posts);
 
     const filtered_posts = posts.filter((item) => {
         return publisher === "All" ? true : publisher === item.source.name;

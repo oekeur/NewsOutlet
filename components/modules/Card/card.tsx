@@ -14,7 +14,10 @@ export default function Card({ post, gridPos }) {
 
     return (
         <div className={`${styles.card} ${gridPos}`}>
-            <Link href={`/article/${encodeURIComponent(post.id)}`}>
+            <Link
+                href={`/article/${encodeURIComponent(post.title)}`}
+                as={`/article/${encodeURIComponent(post.title)}`}
+            >
                 <div>
                     <div style={headerImage} />
                     <div className={styles.content}>

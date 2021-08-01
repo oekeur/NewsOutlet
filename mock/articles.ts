@@ -131,7 +131,7 @@ export default {
                 id: "nyp",
                 name: "New York Post",
             },
-            r: "Mike Rivero",
+            author: "Mike Rivero",
             title:
                 "Biden will reimpose strict car mileage standards under Obama and urge 40% of drivers to use electric vehicles in 10 years in a bid to cut greenhouse emissions in half by 2030",
             description:

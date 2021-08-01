@@ -42,9 +42,12 @@ export default function Article(content) {
 // This function gets called at build time on server-side.
 export async function getStaticProps({ params }) {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_ROOT}article/${params.article}`
+        `${process.env.NEXT_PUBLIC_API_ROOT}article/${encodeURIComponent(
+            params.article
+        )}`
     );
     const post = await res.json();
+
     return {
         props: {
             ...post,
@@ -61,6 +64,6 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: true,
+        fallback: false,
     };
 }

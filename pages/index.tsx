@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import pages from "../mock/pages";
 import Card from "../components/modules/Card/card";
+import layout from "../styles/base/layout.module.scss";
+import homepageStyles from "../styles/base/home.module.scss";
 
 const getPublishers = (posts) => {
     const sources = [];
@@ -31,7 +33,7 @@ export default function Home({ posts, homepageContent }) {
     });
 
     return (
-        <div>
+        <div className={layout.container}>
             <Head>
                 <title>{title}</title>
                 <meta
@@ -40,8 +42,10 @@ export default function Home({ posts, homepageContent }) {
                 />
                 <meta name="description" content={description} />
             </Head>
-            <h1>{title}</h1>
-            <p>{description}</p>
+            <div className={homepageStyles.header}>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </div>
             <select
                 onChange={(e) => {
                     const { value } = e.currentTarget;
@@ -67,10 +71,17 @@ export default function Home({ posts, homepageContent }) {
                     );
                 })}
             </select>
-
-            {filtered_posts.map(function (post) {
-                return <Card key={post.id} post={post} />;
-            })}
+            <div className={layout.gridParent}>
+                {filtered_posts.map(function (post, index) {
+                    return (
+                        <Card
+                            key={post.id}
+                            post={post}
+                            gridPos={layout[`div${index}`]}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 }

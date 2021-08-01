@@ -1,9 +1,20 @@
 import parse from "html-react-parser";
 import Head from "next/head";
+import layout from "../../styles/base/layout.module.scss";
+import articleStyles from "../../styles/base/article.module.scss";
 
 export default function Article(content) {
+    const headerImage = {
+        width: "100%",
+        height: "400px",
+        backgroundImage: `url(${content.urlToImage})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+    };
+
     return (
-        <div>
+        <div className={layout.container}>
             <Head>
                 <title>{content.title}</title>
                 <meta
@@ -12,11 +23,17 @@ export default function Article(content) {
                 />
                 <meta name="description" content={content.description} />
             </Head>
-            <h1>{content.title}</h1>
-            <span>
-                {content.author} - {content.source.name}
-            </span>
-            {parse(content.content)}
+            <div className={articleStyles.header}>
+                <h1>{content.title}</h1>
+                <span>
+                    {content.author} - {content.source.name}
+                    fixed;
+                </span>
+            </div>
+            <div style={headerImage} />
+            <div className={articleStyles.content}>
+                {parse(content.content)}
+            </div>
         </div>
     );
 }

@@ -56,3 +56,16 @@ video {
     max-width: 100%;
     height: auto;
 }
+
+ul {
+    list-style: none; /* Remove default bullets */
+}
+
+ul li::before {
+    content: "\2022";
+    color: gold;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}

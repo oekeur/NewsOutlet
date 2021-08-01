@@ -7,15 +7,6 @@ export default async function handler(
     res: NextApiResponse<Article>
 ) {
     res.status(200).json({
-        author: "",
-        content: "",
-        description: "",
-        id: "",
-        publishedAt: "",
-        source: { id: "", name: "" },
-        title: "",
-        url: "",
-        urlToImage: "",
         ...articles.data,
     });
 }

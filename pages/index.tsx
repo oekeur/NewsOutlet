@@ -1,10 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import pages from "../mock/pages";
 
 export default function Home({ posts, homepageContent }) {
+    const [order, setOrder] = useState("ASC");
     const { title, description } = homepageContent;
     posts = Object.values(posts);
+    posts.sort((a, b) => {
+        const sort = a.title.localeCompare(b.title, "en");
+        return order === "ASC" ? sort : sort * -1;
+    });
 
     return (
         <div>
@@ -18,6 +24,16 @@ export default function Home({ posts, homepageContent }) {
             </Head>
             <h1>{title}</h1>
             <p>{description}</p>
+            <select
+                onChange={(e) => {
+                    const { value } = e.currentTarget;
+                    setOrder(value);
+                }}
+                value={order}
+            >
+                <option value="ASC">A-Z</option>
+                <option value="DESC">Z-A</option>
+            </select>
             <ul>
                 {posts.map(function (item) {
                     return (

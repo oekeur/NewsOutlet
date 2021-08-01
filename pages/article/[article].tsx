@@ -1,27 +1,18 @@
-import useSWR from "swr";
-
-import { useRouter } from "next/router";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import parse from "html-react-parser";
 
 export default function Article(content) {
-    const router = useRouter();
-    const { article } = router.query;
-    const { data, error } = useSWR(`/api/article/${article}`, fetcher);
-
-    if (error) return <div>Failed to load</div>;
-    if (!data) return <div>Loading...</div>;
-
     return (
         <div>
+            <h1>This is the details for: {article}</h1>
+            <span>This is the details for: {article}</span>
             <h1>This is the details for: {article}</h1>
         </div>
     );
 }
 
 // This function gets called at build time on server-side.
-export async function getStaticProps() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT}article/1`);
+export async function getStaticProps(id) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT}article/${id}`);
     const post = await res.json();
 
     return {

@@ -5,11 +5,22 @@ import pages from "../mock/pages";
 
 export default function Home({ posts, homepageContent }) {
     const [order, setOrder] = useState("ASC");
+    const [publisher, setPublisher] = useState("All");
+
     const { title, description } = homepageContent;
     posts = Object.values(posts);
     posts.sort((a, b) => {
         const sort = a.title.localeCompare(b.title, "en");
         return order === "ASC" ? sort : sort * -1;
+    });
+    const sources = [];
+    posts.forEach((post) => sources.push(post.source.name));
+    const uniqueSources = [...new Set(sources)];
+    uniqueSources.sort((a, b) => a.localeCompare(b, "en"));
+    uniqueSources.unshift("All");
+
+    const filtered_posts = posts.filter((item) => {
+        return publisher === "All" ? true : publisher === item.source.name;
     });
 
     return (
@@ -34,8 +45,23 @@ export default function Home({ posts, homepageContent }) {
                 <option value="ASC">A-Z</option>
                 <option value="DESC">Z-A</option>
             </select>
+            <select
+                onChange={(e) => {
+                    const { value } = e.currentTarget;
+                    setPublisher(value);
+                }}
+                value={publisher}
+            >
+                {uniqueSources.map(function (item, index) {
+                    return (
+                        <option key={index} value={item}>
+                            {item}
+                        </option>
+                    );
+                })}
+            </select>
             <ul>
-                {posts.map(function (item) {
+                {filtered_posts.map(function (item) {
                     return (
                         <li key={item.id}>
                             <Link

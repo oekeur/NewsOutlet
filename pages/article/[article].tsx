@@ -4,6 +4,15 @@ import layout from "../../styles/base/layout.module.scss";
 import articleStyles from "../../styles/base/article.module.scss";
 
 export default function Article(content) {
+    const headerImage = {
+        width: "100%",
+        height: "400px",
+        backgroundImage: `url(${content.urlToImage})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+    };
+
     return (
         <div className={layout.container}>
             <Head>
@@ -21,6 +30,7 @@ export default function Article(content) {
                     fixed;
                 </span>
             </div>
+            <div style={headerImage} />
             <div className={articleStyles.content}>
                 {parse(content.content)}
             </div>

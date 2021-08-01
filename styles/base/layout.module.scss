@@ -1,0 +1,20 @@
+@import "../base";
+
+.gridParent {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-rows: repeat(6, 1fr);
+    gap: 16px 16px;
+    grid-auto-flow: row;
+
+    @for $i from 0 through 19 {
+        .div#{$i} {
+            @if ($i<=1) {
+                grid-column-end: span 3;
+            } @else {
+                grid-column-end: span 2;
+            }
+        }
+    }
+}

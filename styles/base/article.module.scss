@@ -1,0 +1,16 @@
+@import "../base";
+
+.header {
+    margin: 80px 0 48px;
+}
+
+.content {
+    max-width: 80%;
+    margin: 0 auto;
+    line-height: 2rem;
+    a {
+        text-decoration: none;
+        border-bottom: gold 2px solid;
+        color: gold;
+    }
+}

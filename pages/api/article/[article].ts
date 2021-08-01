@@ -9,7 +9,7 @@ export default async function handler(
     const { article } = req.query;
 
     const data = articles.data.filter((item) => {
-        return item.id === article;
+        return item.title === article;
     });
 
     res.status(200).json({

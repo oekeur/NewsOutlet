@@ -2,6 +2,7 @@ import parse from "html-react-parser";
 import Head from "next/head";
 import layout from "../../styles/base/layout.module.scss";
 import articleStyles from "../../styles/base/article.module.scss";
+import articles from "../../mock/articles";
 
 export default function Article(content) {
     const headerImage = {
@@ -53,8 +54,13 @@ export async function getStaticProps({ params }) {
 
 // Fallback/static generation
 export async function getStaticPaths() {
+    const paths = [];
+    articles.data.forEach((article) => {
+        paths.push({ params: { article: article.title } });
+    });
+
     return {
-        paths: [{ params: { article: "1" } }, { params: { article: "2" } }],
+        paths,
         fallback: true,
     };
 }

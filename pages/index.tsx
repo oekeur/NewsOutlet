@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import pages from "../mock/pages";
+import Card from "../components/modules/Card/card";
 
 const getPublishers = (posts) => {
     const sources = [];
@@ -66,19 +67,10 @@ export default function Home({ posts, homepageContent }) {
                     );
                 })}
             </select>
-            <ul>
-                {filtered_posts.map(function (item) {
-                    return (
-                        <li key={item.id}>
-                            <Link
-                                href={`/article/${encodeURIComponent(item.id)}`}
-                            >
-                                <a>{item.title}</a>
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
+
+            {filtered_posts.map(function (post) {
+                return <Card key={post.id} post={post} />;
+            })}
         </div>
     );
 }

@@ -4,7 +4,7 @@ import pages from "../mock/pages";
 
 export default function Home({ posts, homepageContent }) {
     const { title, description } = homepageContent;
-    console.log(posts);
+    posts = Object.values(posts);
 
     return (
         <div>
@@ -19,15 +19,13 @@ export default function Home({ posts, homepageContent }) {
             <h1>{title}</h1>
             <p>{description}</p>
             <ul>
-                {Object.keys(posts).map(function (key) {
+                {posts.map(function (item) {
                     return (
-                        <li key={posts[key].id}>
+                        <li key={item.id}>
                             <Link
-                                href={`/article/${encodeURIComponent(
-                                    posts[key].id
-                                )}`}
+                                href={`/article/${encodeURIComponent(item.id)}`}
                             >
-                                <a>{posts[key].title}</a>
+                                <a>{item.title}</a>
                             </Link>
                         </li>
                     );

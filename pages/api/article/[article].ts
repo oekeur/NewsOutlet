@@ -13,12 +13,6 @@ export default async function handler(
     });
 
     res.status(200).json({
-        author: "",
-        content: "",
-        description: "",
-        source: { name: "" },
-        title: "",
-        urlToImage: "",
-        ...data,
+        ...data[0],
     });
 }

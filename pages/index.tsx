@@ -1,8 +1,10 @@
 import Head from "next/head";
+import Link from "next/link";
 import pages from "../mock/pages";
 
 export default function Home({ posts, homepageContent }) {
     const { title, description } = homepageContent;
+    console.log(posts);
 
     return (
         <div>
@@ -14,7 +16,23 @@ export default function Home({ posts, homepageContent }) {
                 />
                 <meta name="description" content={description} />
             </Head>
-            <h1>This is the homepage</h1>
+            <h1>{title}</h1>
+            <p>{description}</p>
+            <ul>
+                {Object.keys(posts).map(function (key) {
+                    return (
+                        <li key={posts[key].id}>
+                            <Link
+                                href={`/article/${encodeURIComponent(
+                                    posts[key].id
+                                )}`}
+                            >
+                                <a>{posts[key].title}</a>
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
         </div>
     );
 }

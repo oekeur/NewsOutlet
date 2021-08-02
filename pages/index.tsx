@@ -8,6 +8,7 @@ import homepageStyles from "../styles/base/home.module.scss";
 const getPublishers = (posts) => {
     const sources = [];
     posts.forEach((post) => sources.push(post.source.name));
+    // @ts-ignore
     const uniqueSources = [...new Set(sources)];
     uniqueSources.sort((a, b) => a.localeCompare(b, "en"));
     uniqueSources.unshift("All");

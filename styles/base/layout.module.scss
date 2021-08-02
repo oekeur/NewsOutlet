@@ -5,15 +5,24 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: repeat(6, 1fr);
-    gap: 16px 16px;
+    gap: 24px 24px;
     grid-auto-flow: row;
 
     @for $i from 0 through 19 {
         .div#{$i} {
             @if ($i<=1) {
-                grid-column-end: span 3;
+                grid-column-end: span 6;
+                @media (min-width: 1200px) {
+                    grid-column-end: span 3;
+                }
             } @else {
-                grid-column-end: span 2;
+                grid-column-end: span 6;
+                @media (min-width: 768px) {
+                    grid-column-end: span 4;
+                }
+                @media (min-width: 1200px) {
+                    grid-column-end: span 2;
+                }
             }
             box-shadow: -2px 2px 4px 0px rgba(176, 164, 176, 1);
             opacity: 1;
@@ -28,7 +37,7 @@
 
 .container {
     margin: 16px;
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
         max-width: 80%;
         margin: 0 auto;
     }

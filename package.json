@@ -1,8 +1,8 @@
 {
     "name": "next.js-template",
-    "author": "Grrr",
+    "author": "",
     "version": "0.0.1",
-    "homepage": "https://grrr.nl/",
+    "homepage": "/",
     "scripts": {
         "dev": "next dev",
         "watch": "next dev",

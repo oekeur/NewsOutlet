@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type Article from "../../../interfaces/article";
 import styles from "./card.module.scss";
 
 export default function Card({ post, gridPos }) {
